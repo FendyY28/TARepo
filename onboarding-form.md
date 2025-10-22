@@ -79,4 +79,4 @@ Explanation:
         - `userId` (Who answered it).
         - `fieldId` (What's the question).
         - `value` (The user's responses).
-- Update the user to completeOnboarding from false to true.
+- Update the user to `completeOnboarding` (From User table) from `false` to `true`.
