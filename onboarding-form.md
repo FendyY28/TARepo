@@ -66,17 +66,17 @@ Explanation:
 ## API Flow Explanation
 ### Getting Form (GET/api/onboarding)
 - Backend finds the latest and active form version from "onboardingForm".
-- Get all the steps (pages) from "onboardingStep" for the form sorted by 'order'.
-- For each step, get all the questions or input fields from "onboardingField" sorted by 'order'.
+- Get all the steps (pages) from "onboardingStep" for the form sorted by `order`.
+- For each step, get all the questions or input fields from "onboardingField" sorted by `order`.
 - Assemble all the data into JSON and send it to the frontend.
 
 ### Saving Responses (POST/api/onboarding)
 - Frontend sends the user's responses in the form of (array [{name: ..., value: ...}]).
 - Backend validates if the user logged in or not.
 - For each answer:
-    - Find the 'fieldId' based on the 'name'.
+    - Find the `fieldId` based on the `name`.
     - Create a new row in 'userOnboardingResponse' table that contains:
-        - userId (Who answered it).
-        - fieldId (What's the question).
-        - value (The user's responses).
+        - `userId` (Who answered it).
+        - `fieldId` (What's the question).
+        - `value` (The user's responses).
 - Update the user to completeOnboarding from false to true.
