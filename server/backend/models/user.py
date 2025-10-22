@@ -6,6 +6,9 @@ from django.db import models
 
 from . import utils
 
+# Just to check if the datas that I register are inserted (to check the username)
+# def __str__(self):
+#     return self.username
 
 class User(utils.CustomModel):
     username = models.TextField(null=False, unique=True)
@@ -50,7 +53,9 @@ class User(utils.CustomModel):
         self.password = self.encrypt_password(self.password, self.salt)
 
     def save(self, *args, **kwargs):
-        self.set_salt_and_password()
+        # Only hash password and generate salt when creating a new user. If we rehash during updates, the password would be hashed twice and the user wouldn't be able to log in.
+        if not self.salt:
+            self.set_salt_and_password()
         super(User, self).save(*args, **kwargs)
 
     def verify_password(self, password: str):
