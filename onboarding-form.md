@@ -8,11 +8,11 @@ The goal is to move the datas into a database table for better scalability and f
 The hardcoded database would completely replaced with a new database scheme.
 
 ### onboardingForm Table
-- formId: (Primary key) Unique key 
-- version: Integer
-- isVisible: Boolean
-- createdAt: DateTime
-- updatedAt: DateTime
+- `formId`: (Primary key) Unique key 
+- `version`: Integer
+- `isVisible`: Boolean
+- `createdAt`: DateTime
+- `updatedAt`: DateTime
 
 Explanation: 
 - "onboardingForm" table represents one version of onboarding flow. This is to create new versions of the form too if there are any changes.
@@ -21,9 +21,9 @@ Explanation:
 - `createdAt` and `updatedAt` track when the form version was created and last modified.
 
 ### onboardingStep Table
-- stepId: (Primary key) Unique key
-- formId: (Foreign key): Links to "onboardingForm" table
-- order: Integer
+- `stepId`: (Primary key) Unique key
+- `formId`: (Foreign key): Links to "onboardingForm" table
+- `order`: Integer
 
 Explanation:
 - "onboardingStep" table represents a single page / step within an "onboardingForm".
@@ -31,13 +31,13 @@ Explanation:
 - `order` is to define the sequence of the pages / steps that will appear for the users.
 
 ### onboardingField Table
-- fieldId: (Primary key) Unique key
-- stepId: (Foreign key): Links to "onboardingStep" table
-- name: String 
-- label: String
-- type: String
-- required: Boolean
-- order: Integer
+- `fieldId`: (Primary key) Unique key
+- `stepId`: (Foreign key): Links to "onboardingStep" table
+- `name`: String 
+- `label`: String
+- `type`: String
+- `required`: Boolean
+- `order`: Integer
 
 Explanation: 
 - "onboardingField" table represents a single question or input field within an "onboardingStep".
@@ -49,12 +49,12 @@ Explanation:
 - `order` defines the sequence of questions on the page.
 
 ### userOnboardingResponse Table
-- responseId: (Primary key) Unique key
-- userId: (Foreign key): Links to "User" table
-- fieldId: (Foreign key): Links to "onboardingField" table
-- value: String
-- createdAt: DateTime
-- updatedAt: DateTime
+- `responseId`: (Primary key) Unique key
+- `userId`: (Foreign key): Links to "User" table
+- `fieldId`: (Foreign key): Links to "onboardingField" table
+- `value`: String
+- `createdAt`: DateTime
+- `updatedAt`: DateTime
 
 Explanation: 
 - "userOnboardingResponse" table stores the answers that the users submitted by linking `userId` from "User" table to a specific question (fieldId) with their value.
